@@ -6,5 +6,5 @@ set FLASK_ENV=development
 # Correr flask
 flask run 
 
-
+# Levantar flask con app + debug
 flask --app app.py --debug run
