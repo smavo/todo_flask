@@ -9,6 +9,9 @@ from todor import db
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
+    if g.user:
+        return redirect(url_for('todo.list'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -33,6 +36,9 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+    if g.user:
+        return redirect(url_for('todo.list'))
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
