@@ -1,6 +1,9 @@
 
-
+# IDE
 .idea
 
+# cache 
 __pycache__
 
+# Entorno virvual
+venv
