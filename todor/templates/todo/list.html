@@ -34,7 +34,10 @@
                         <a href="{{ url_for('todo.update', id = todo.id)}}" class="btn btn-info btn-sm">Editar</a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-danger btn-sm">Eliminar</a>
+<!--                        <a href="{{ url_for('todo.delete', id = todo.id)}}" class="btn btn-danger btn-sm">Eliminar</a>-->
+
+                        <button onclick="confirmDelete({{ todo.id }})" class="btn btn-danger btn-sm">Eliminar</button>
+
                     </td>
                 </tr>
                 {% endif%}
@@ -42,4 +45,40 @@
         </tbody>
     </table>
 </section>
+
+<!--<script>-->
+<!--    function confirmDelete(id) {-->
+<!--        swal({-->
+<!--            title: "¿Estás seguro?",-->
+<!--            text: "Una vez eliminada, no podrás recuperar esta tarea",-->
+<!--            icon: "warning",-->
+<!--            buttons: true,-->
+<!--            dangerMode: true,-->
+<!--        }).then((willDelete) => {-->
+<!--            if (willDelete) {-->
+<!--                window.location.href = '/todo/delete/' + id;-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!-- </script>-->
+
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Una vez eliminada, no podrás recuperar esta tarea",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/todo/delete/' + id;
+            }
+        })
+    }
+</script>
+
 {% endblock %}

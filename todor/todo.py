@@ -50,3 +50,11 @@ def update(id):
     return render_template('todo/update.html', todo=todo)
 
 
+@bp.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    todo = get_todo(id)
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('todo.list'))
+
